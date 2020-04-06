@@ -50,7 +50,8 @@ jobs:
             ls -al
             mkdir lambda_function
             ls -al
-            zip -r csye6225-lambda-${CIRCLE_BUILD_NUM}.zip webapp
+            cd ~/project/webapp
+            zip -r csye6225-lambda-${CIRCLE_BUILD_NUM}.zip node_modules index.js
             pwd
             ls
             mv csye6225-lambda-${CIRCLE_BUILD_NUM}.zip ~/lambda_function
