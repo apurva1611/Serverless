@@ -19,8 +19,9 @@ exports.handler = function (event, context, callback) {
 
     var message = event.Records[0].Sns.Message;
     console.log('Message received from SNS:', message);
-    var records = event.Records[0].Sns.Subject;
-    console.log("records recevide from sns",records);
+    var records = message.split("-");
+    console.log(records[0]);
+    console.log(records[1]);
     //Added to make an entry to Dynamo DB
     //Create the DynamoDB service object
     var ddb = new AWS.DynamoDB({
@@ -76,13 +77,13 @@ exports.handler = function (event, context, callback) {
         var eParams = {
             Destination: {
                 // ToAddresses: [message.email]
-                ToAddresses: [message]
+                ToAddresses: [records[0]]
             },
             Message: {
                 Body: {
                     Text: {
                         // Data: message.rows
-                        Data: records
+                        Data: records[1]
                     }
                 },
                 Subject: {
