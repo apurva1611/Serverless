@@ -19,7 +19,7 @@ exports.handler = function (event, context, callback) {
 
     var message = event.Records[0].Sns.Message;
     console.log('Message received from SNS:', message);
-    var records = event.Records[0].Sns.Message.Subject;
+    var records = event.Records[0].Sns.Subject;
     console.log("records recevide from sns",records);
     //Added to make an entry to Dynamo DB
     //Create the DynamoDB service object
